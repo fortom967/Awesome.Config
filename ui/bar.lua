@@ -41,6 +41,9 @@ function taglist(s)
 
 			create_callback = function(self, c3, index, objects) --luacheck: no unused args
 				local t = self:get_children_by_id("tag")[1]
+				t:connect_signal("width", function()
+					t.forced_width = 20
+				end)
 				if c3.selected then
 					t.bg = beautiful.accent
 					t.shape = gears.shape.rounded_rect
@@ -197,8 +200,11 @@ local notifications = place({
 	bg = beautiful.barhi,
 }, "center", "center")
 
+list = nil
+
 screen.connect_signal("request::desktop_decoration", function(s)
 	s.padding = { left = 0, right = 0, top = 50, bottom = 0 }
+	list = taglist(s)
 
 	awful.tag({ "", "", "", "", "", "", "", "", "" }, s, awful.layout.layouts[1])
 
@@ -223,7 +229,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
 			layout = layout.align.horizontal,
 			expand = "none",
 			menu,
-			taglist(s),
+			list,
 			{
 				layout = layout.fixed.horizontal,
 				spacing = 10,

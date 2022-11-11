@@ -39,11 +39,10 @@ end)
 battery = slider("#69EF86", nil, 10, nil)
 
 fs = constraint({
-
-	paddings = 8,
+	paddings = 9,
 	color = "#69EF86",
 	border_color = beautiful.barhi,
-	border_width = 5,
+	border_width = 6,
 	value = 1,
 	max_value = 10,
 	widget = wibox.container.radialprogressbar,
@@ -51,21 +50,21 @@ fs = constraint({
 
 cpu = constraint({
 	fs,
-	paddings = 8,
+	paddings = 9,
 	color = "#EB4F87",
 	border_color = beautiful.barhi,
-	border_width = 5,
+	border_width = 6,
 	value = 1,
-	max_value = 10,
+	max_value = 100,
 	widget = wibox.container.radialprogressbar,
 }, "exact", 70, 70)
 
 ram = wibox.widget({
 	cpu,
-	paddings = 8,
+	paddings = 9,
 	color = "#5CC4FF",
 	border_color = beautiful.barhi,
-	border_width = 5,
+	border_width = 6,
 	value = 1,
 	max_value = 10,
 	widget = wibox.container.radialprogressbar,
@@ -78,6 +77,20 @@ gears.timer({
 	call_now = true,
 	autostart = true,
 	callback = function()
+		awful.spawn.easy_async_with_shell("mpstat | awk 'FNR == 4 {print $3}'", function(a)
+			cpu.widget.value = tonumber(a)
+		end)
+		awful.spawn.easy_async_with_shell("df -BM | grep sda | awk '{print $2" .. '" "' .. "$3}'", function(b)
+			local words = {}
+
+			for word in b:gmatch("[0-9]+") do
+				table.insert(words, word)
+			end
+
+			fs.widget.max_value = tonumber(words[1])
+			fs.widget.value = tonumber(words[2])
+		end)
+
 		awful.spawn.easy_async_with_shell("cat /proc/meminfo | grep MemTotal | awk '{print $2}'", function(r)
 			t = tonumber(r)
 			awful.spawn.easy_async_with_shell("cat /proc/meminfo | grep MemFree", function(c)
