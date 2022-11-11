@@ -1,35 +1,19 @@
-awful = require("awful")
-gears = require("gears")
-require("awful.autofocus")
-wibox = require("wibox")
-beautiful = require("beautiful")
-hotkeys_popup = require("awful.hotkeys_popup")
-require("config")
-
-local menu = wibox.container.place({
+local menu = place({
 	{
-		layout = wibox.layout.align.horizontal,
-		wibox.container.margin({
-			layout = wibox.layout.align.horizontal,
-			wibox.widget({
-				image = beautiful.menu,
-				resize = true,
-				valign = "center",
-				widget = wibox.widget.imagebox,
-				forced_width = 15,
-				forced_height = 15,
-
-				buttons = {
-					awful.button({}, 1, nil, function()
-						awful.spawn.with_shell("notify-send 'menu'")
-					end),
-				},
-			}),
+		layout = layout.align.horizontal,
+		margin({
+			layout = layout.align.horizontal,
+			iconbox(beautiful.menu, 15, 15),
 		}, 4, 4, 4, 4),
 	},
-	widget = wibox.container.background,
+	widget = background,
 	shape = gears.shape.circle,
 	bg = beautiful.barhi,
+	buttons = {
+		awful.button({}, 1, nil, function()
+			awful.spawn.with_shell("notify-send 'menu'")
+		end),
+	},
 }, "center", "center")
 
 function taglist(s)
@@ -48,15 +32,12 @@ function taglist(s)
 						bg = beautiful.barfg,
 						shape = gears.shape.circle,
 					},
-					layout = wibox.layout.fixed.horizontal,
+					layout = layout.fixed.horizontal,
 				},
-				widget = wibox.container.margin,
-				top = 8,
-				bottom = 8,
-				left = 8,
-				right = 8,
+				widget = margin,
+				margins = 8,
 			},
-			widget = wibox.container.place,
+			widget = place,
 
 			create_callback = function(self, c3, index, objects) --luacheck: no unused args
 				local t = self:get_children_by_id("tag")[1]
@@ -116,36 +97,35 @@ function taglist(s)
 		},
 	})
 
-	return wibox.container.place({
+	return place({
 		ta,
-		widget = wibox.container.background,
+		widget = background,
 		shape = gears.shape.rounded_rect,
 		bg = beautiful.barhi,
 	}, "center", "center")
 end
 
-local clock = wibox.container.place({
+local clock = place({
 	{
-		layout = wibox.layout.align.horizontal,
-		wibox.container.margin({
-			layout = wibox.layout.align.horizontal,
+		layout = layout.align.horizontal,
+		margin({
+			layout = layout.align.horizontal,
+			iconbox(beautiful.clock, 13, 13),
 			wibox.widget({
-				image = beautiful.clock,
-				resize = true,
-				valign = "center",
-				widget = wibox.widget.imagebox,
-				forced_width = 13,
-				forced_height = 13,
-			}),
-			wibox.widget({
-				format = "  %I:%M:%S %p",
+				format = "  %I %M %S %p",
 				refresh = 1,
 				widget = wibox.widget.textclock,
 				fg = beautiful.barfg,
 			}),
 		}, 15, 15, 3, 3),
 	},
-	widget = wibox.container.background,
+	buttons = {
+		awful.button({}, 1, nil, function()
+			awesome.emit_signal("calender")
+		end),
+	},
+
+	widget = background,
 	shape = gears.shape.rounded_rect,
 	bg = beautiful.barhi,
 }, "center", "center")
@@ -156,25 +136,18 @@ net = wibox.widget({
 	fg = beautiful.barfg,
 })
 
-neticon = wibox.widget({
-	image = beautiful.disconnected,
-	resize = true,
-	valign = "center",
-	widget = wibox.widget.imagebox,
-	forced_width = 13,
-	forced_height = 13,
-})
+neticon = iconbox(beautiful.disconnected, 13, 13)
 
-local wifi = wibox.container.place({
+local wifi = place({
 	{
-		layout = wibox.layout.align.horizontal,
-		wibox.container.margin({
-			layout = wibox.layout.align.horizontal,
+		layout = layout.align.horizontal,
+		margin({
+			layout = layout.align.horizontal,
 			neticon,
 			net,
 		}, 15, 15, 3, 3),
 	},
-	widget = wibox.container.background,
+	widget = background,
 	shape = gears.shape.rounded_rect,
 	bg = beautiful.barhi,
 
@@ -206,34 +179,26 @@ gears.timer({
 	end,
 })
 
-local notifications = wibox.container.place({
+local notifications = place({
 	{
-		layout = wibox.layout.align.horizontal,
-		wibox.container.margin({
-			layout = wibox.layout.align.horizontal,
-			wibox.widget({
-				image = beautiful.notifications,
-				resize = true,
-				valign = "center",
-				widget = wibox.widget.imagebox,
-				forced_width = 8,
-				forced_height = 8,
-
-				buttons = {
-					awful.button({}, 1, nil, function()
-						awesome.emit_signal("npanelT")
-					end),
-				},
-			}),
+		layout = layout.align.horizontal,
+		margin({
+			layout = layout.align.horizontal,
+			iconbox(beautiful.notifications, 8, 8),
 		}, 8, 8, 8, 8),
 	},
-	widget = wibox.container.background,
+	buttons = {
+		awful.button({}, 1, nil, function()
+			awesome.emit_signal("npanelT")
+		end),
+	},
+	widget = background,
 	shape = gears.shape.circle,
 	bg = beautiful.barhi,
 }, "center", "center")
 
 screen.connect_signal("request::desktop_decoration", function(s)
-	s.padding = { left = 0, right = 0, top = 35, bottom = 0 }
+	s.padding = { left = 0, right = 0, top = 50, bottom = 0 }
 
 	awful.tag({ "", "", "", "", "", "", "", "", "" }, s, awful.layout.layouts[1])
 
@@ -254,13 +219,13 @@ screen.connect_signal("request::desktop_decoration", function(s)
 		maximum_height = 38,
 		maximum_width = barWidth,
 
-		widget = wibox.container.margin({
-			layout = wibox.layout.align.horizontal,
+		widget = margin({
+			layout = layout.align.horizontal,
 			expand = "none",
 			menu,
 			taglist(s),
 			{
-				layout = wibox.layout.fixed.horizontal,
+				layout = layout.fixed.horizontal,
 				spacing = 10,
 				wifi,
 				clock,

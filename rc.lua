@@ -37,13 +37,13 @@ screen.connect_signal("request::wallpaper", function(s)
 	gears.wallpaper.maximized(beautiful.wallpaper)
 end)
 
-awful.mouse.append_global_mousebindings({
-	awful.button({}, 3, function()
-		mymainmenu:toggle()
-	end),
-	awful.button({}, 4, awful.tag.viewprev),
-	awful.button({}, 5, awful.tag.viewnext),
-})
+-- awful.mouse.append_global_mousebindings({
+-- 	awful.button({}, 3, function()
+-- 		mymainmenu:toggle()
+-- 	end),
+-- 	awful.button({}, 4, awful.tag.viewprev),
+-- 	awful.button({}, 5, awful.tag.viewnext),
+-- })
 
 ruled.client.connect_signal("request::rules", function()
 	ruled.client.append_rule({
@@ -146,11 +146,7 @@ ruled.notification.connect_signal("request::rules", function()
 	})
 end)
 
-naughty.connect_signal("request::display", function(n)
-	naughty.layout.box({ notification = n })
-end)
-
-awful.spawn.with_shell("picom -b")
+-- awful.spawn.with_shell("picom -b")
 
 client.connect_signal("request::default_mousebindings", function()
 	awful.mouse.append_client_mousebindings({
@@ -204,5 +200,4 @@ client.connect_signal("request::default_keybindings", function()
 end)
 
 require("keys")
-require("bar")
-require("panel")
+require("ui")

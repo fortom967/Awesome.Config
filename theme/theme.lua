@@ -28,6 +28,10 @@ theme.poweroff = themes_path .. "icons/poweroff.svg"
 theme.restart = themes_path .. "icons/restart.svg"
 theme.lock = themes_path .. "icons/lock.svg"
 theme.logout = themes_path .. "icons/logout.svg"
+theme.search = themes_path .. "icons/search.svg"
+theme.volume = themes_path .. "icons/volume.svg"
+theme.brightness = themes_path .. "icons/brightness.svg"
+theme.battery = themes_path .. "icons/battery.svg"
 
 -- theme.bg_normal = "#121212"
 -- theme.bg_focus = "#121321"
@@ -75,10 +79,10 @@ theme.border_width = 0
 -- notification_[width|height|margin]
 -- notification_[border_color|border_width|shape|opacity]
 
-theme.notification_bg = "#ffffff"
-theme.notification_fg = "#121212"
-theme.notification_margin = 10
-theme.notification_border_width = 0
+-- theme.notification_bg = "#ffffff"
+-- theme.notification_fg = "#121212"
+-- theme.notification_margin = 10
+-- theme.notification_border_width = 0
 -- theme.notification_shape = gears.shape.rounded_rect
 -- theme.notification_border_color = "#121221"
 
