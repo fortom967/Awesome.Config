@@ -33,6 +33,8 @@ theme.volume = themes_path .. "icons/volume.svg"
 theme.brightness = themes_path .. "icons/brightness.svg"
 theme.battery = themes_path .. "icons/battery.svg"
 
+theme.layoutlist_bg_selected = theme.accent
+
 -- theme.bg_normal = "#121212"
 -- theme.bg_focus = "#121321"
 -- theme.bg_urgent = "#123130"
@@ -114,11 +116,11 @@ theme.titlebar_maximized_button_focus_active = themes_path .. "titlebar/maximize
 
 theme.wallpaper = themes_path .. "wallpaper.jpg"
 
-theme.layout_fairh = themes_path .. "layouts/fairh.png"
-theme.layout_fairv = themes_path .. "layouts/fairv.png"
-theme.layout_floating = themes_path .. "layouts/floating.png"
-theme.layout_tilebottom = themes_path .. "layouts/tilebottom.png"
-theme.layout_tile = themes_path .. "layouts/tile.png"
+theme.layout_fairh = themes_path .. "layouts/fairh.svg"
+theme.layout_fairv = themes_path .. "layouts/fairv.svg"
+theme.layout_floating = themes_path .. "layouts/floating.svg"
+theme.layout_tilebottom = themes_path .. "layouts/tilebottom.svg"
+theme.layout_tile = themes_path .. "layouts/tile.svg"
 
 theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height, theme.bg_focus, theme.fg_focus)
 

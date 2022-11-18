@@ -14,6 +14,7 @@ require("ui.panel")
 require("ui.notifications")
 require("ui.runprompt")
 require("ui.calender")
+require("ui.layoutlist")
 
 awful.mouse.append_global_mousebindings({
 	awful.button({}, 1, function()
