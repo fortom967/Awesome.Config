@@ -66,7 +66,7 @@ ram = wibox.widget({
 	border_color = beautiful.barhi,
 	border_width = 6,
 	value = 1,
-	max_value = 10,
+	max_value = 3043632,
 	widget = wibox.container.radialprogressbar,
 })
 
@@ -92,13 +92,8 @@ gears.timer({
 			fs.widget.value = tonumber(words[2])
 		end)
 
-		awful.spawn.easy_async_with_shell("cat /proc/meminfo | grep MemTotal | awk '{print $2}'", function(r)
-			t = tonumber(r)
-			awful.spawn.easy_async_with_shell("cat /proc/meminfo | grep MemFree", function(c)
-				f = t - tonumber(string.sub(c, string.find(c, "[0-9]+")))
-				ram.max_value = t
-				ram.value = f
-			end)
+		awful.spawn.easy_async_with_shell("free | awk 'FNR == 2 {print $3}'", function(r)
+			ram.value = tonumber(r)
 		end)
 
 		awful.spawn.easy_async_with_shell("acpi -b | awk '{print $3$4}'", function(out)
