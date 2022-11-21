@@ -165,23 +165,6 @@ local wifi = place({
 	},
 }, "center", "center")
 
-gears.timer({
-	timeout = 1,
-	call_now = true,
-	autostart = true,
-	callback = function()
-		awful.spawn.easy_async_with_shell("iwctl station wlan0 show | grep network", function(out)
-			if out == "" then
-				neticon.image = beautiful.disconnected
-				net.text = " Disconnected"
-			else
-				neticon.image = beautiful.connected
-				net.text = " " .. string.gsub(string.sub(out, 35), "[ \t]+%f[\r\n%z]", "")
-			end
-		end)
-	end,
-})
-
 local notifications = place({
 	{
 		layout = layout.align.horizontal,

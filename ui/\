@@ -91,15 +91,12 @@ timer2 = gears.timer({
 	end,
 })
 
-timerOn = true
-
 awesome.connect_signal("timers", function()
-	if timerOn then
-		timer1:stop()
-		timer2:stop()
-	else
-		timer1:start()
-		timer2:start()
-	end
-	timerOn = not timerOn
+    if timerOn then
+	timer1.stop()
+	timer2.stop()
+    else
+	timer1.start()
+	timer2.start()
+    end
 end)

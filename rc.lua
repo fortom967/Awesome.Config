@@ -146,7 +146,7 @@ ruled.notification.connect_signal("request::rules", function()
 	})
 end)
 
--- awful.spawn.with_shell("picom -b")
+awful.spawn.with_shell("picom -b")
 
 client.connect_signal("request::default_mousebindings", function()
 	awful.mouse.append_client_mousebindings({

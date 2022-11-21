@@ -12,7 +12,7 @@ modkey = "Mod4"
 
 awful.keyboard.append_global_keybindings({
 	awful.key({ modkey }, "w", function()
-		mymainmenu:show()
+        awesome.emit_signal("timers")
 	end),
 	awful.key({ modkey, "Shift" }, "r", awesome.restart),
 	awful.key({ modkey, "Shift" }, "q", awesome.quit),
