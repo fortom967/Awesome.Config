@@ -114,7 +114,7 @@ theme.titlebar_maximized_button_focus_inactive = themes_path .. "titlebar/maximi
 theme.titlebar_maximized_button_normal_active = themes_path .. "titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active = themes_path .. "titlebar/maximized_focus_active.png"
 
-theme.wallpaper = themes_path .. "wallpaper2.jpg"
+theme.wallpaper = themes_path .. "wallpaper.jpg"
 
 theme.layout_fairh = themes_path .. "layouts/fairh.svg"
 theme.layout_fairv = themes_path .. "layouts/fairv.svg"
