@@ -62,6 +62,7 @@ ruled.client.connect_signal("request::rules", function()
 		rule_any = {
 			instance = { "copyq", "pinentry" },
 			class = {
+				"osu!",
 				"Arandr",
 				"Blueman-manager",
 				"Gpick",
@@ -93,7 +94,7 @@ ruled.client.connect_signal("request::rules", function()
 
 	ruled.client.append_rule({
 		id = "titlebars",
-		rule_any = { class = { "figma-linux" } },
+		rule_any = { class = { "figma-linux", "Alacritty" } },
 		properties = { titlebars_enabled = false },
 	})
 end)
