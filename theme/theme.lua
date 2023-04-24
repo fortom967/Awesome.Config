@@ -12,7 +12,7 @@ local themes_path = os.getenv("HOME") .. "/.config/awesome/theme/"
 
 local theme = {}
 
-theme.font = "Bellota Bold Italic 10"
+theme.font = "Recursive Sans Casual Static Italic 11"
 
 theme.barbg = "#101213"
 theme.barfg = "#ABABAB"
@@ -46,7 +46,7 @@ theme.layoutlist_bg_selected = theme.accent
 -- theme.fg_urgent = "#ffffff"
 -- theme.fg_minimize = "#ffffff"
 
-theme.useless_gap = 8
+theme.useless_gap = 6
 theme.border_width = 0
 -- theme.border_color_normal = "#000000"
 -- theme.border_color_active = "#535d6c"
@@ -114,7 +114,7 @@ theme.titlebar_maximized_button_focus_inactive = themes_path .. "titlebar/maximi
 theme.titlebar_maximized_button_normal_active = themes_path .. "titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active = themes_path .. "titlebar/maximized_focus_active.png"
 
-theme.wallpaper = themes_path .. "wallpaper.jpg"
+theme.wallpaper = themes_path .. "wallpaper3.jpg"
 
 theme.layout_fairh = themes_path .. "layouts/fairh.svg"
 theme.layout_fairv = themes_path .. "layouts/fairv.svg"

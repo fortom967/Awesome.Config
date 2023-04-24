@@ -3,31 +3,21 @@ require("awful.autofocus")
 local menubar = require("menubar")
 require("awful.hotkeys_popup.keys")
 local hotkeys_popup = require("awful.hotkeys_popup")
-
+local launcher = require("ui.launcher")
 terminal = "alacritty"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
 modkey = "Mod4"
 
+-- Then **IN THE globalkeys TABLE** add a new shortcut
+
 awful.keyboard.append_global_keybindings({
-	awful.key({ modkey }, "w", function()
-        awesome.emit_signal("timers")
-	end),
 	awful.key({ modkey, "Shift" }, "r", awesome.restart),
 	awful.key({ modkey, "Shift" }, "q", awesome.quit),
+
 	awful.key({ modkey }, "Return", function()
 		awful.spawn(terminal)
-	end),
-	awful.key({ modkey }, "r", function()
-		awesome.emit_signal("Rprompt")
-	end),
-	awful.key({ modkey }, "p", function()
-		menubar.show()
-	end),
-
-	awful.key({ modkey }, "t", function()
-		awesome.emit_signal("npanelT")
 	end),
 
 	awful.key({ modkey }, "Left", awful.tag.viewprev),
@@ -82,12 +72,13 @@ awful.keyboard.append_global_keybindings({
 	awful.key({ modkey, "Control" }, "l", function()
 		awful.tag.incncol(-1, nil, true)
 	end),
-	-- awful.key({ modkey }, "space", function()
-	-- 	awful.layout.inc(1)
-	-- end),
-	-- awful.key({ modkey, "Shift" }, "space", function()
-	-- 	awful.layout.inc(-1)
-	-- end),
+	--[[ awful.key({ modkey }, "space", function()
+        awesome.emit_signal("layoutpopup")
+		awful.layout.inc(1)
+	end),
+	awful.key({ modkey, "Shift" }, "space", function()
+		awful.layout.inc(-1)
+	end), ]]
 })
 
 awful.keyboard.append_global_keybindings({

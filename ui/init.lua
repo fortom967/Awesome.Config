@@ -1,105 +1,81 @@
-awful = require("awful")
-gears = require("gears")
-require("awful.autofocus")
-wibox = require("wibox")
-beautiful = require("beautiful")
-hotkeys_popup = require("awful.hotkeys_popup")
-naughty = require("naughty")
-keygrabber = require("awful.keygrabber")
-require("config")
+local awful = require("awful")
 
-require("ui.base")
-require("ui.bar")
-require("ui.panel")
-require("ui.notifications")
-require("ui.runprompt")
-require("ui.calender")
-require("ui.layoutlist")
+local bar = require("ui.bar")
+local layoutpopup = require("ui.layoutpopup")
+local launcher = require("ui.launcher")
 
-awful.mouse.append_global_mousebindings({
-	awful.button({}, 1, function()
-		calender.visible = false
-		npanel.visible = false
-		runprompt.visible = false
-		keygrabber.stop(p.grabber)
-		keygrabber.stop(searchpr.grabber)
-	end),
-})
+screen.connect_signal("request::desktop_decoration", function(s)
+    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
 
-timer1 = gears.timer({
-	timeout = 1,
-	call_now = true,
-	autostart = true,
-	callback = function()
-		awful.spawn.easy_async_with_shell("mpstat | awk 'FNR == 4 {print $3}'", function(a)
-			cpu.widget.value = tonumber(a)
-		end)
+    --[[ s.mypromptbox = awful.widget.prompt()
 
-		awful.spawn.easy_async_with_shell("free | awk 'FNR == 2 {print $3}'", function(r)
-			ram.value = tonumber(r)
-		end)
+    s.mylayoutbox = awful.widget.layoutbox {
+        screen  = s,
+        buttons = {
+            awful.button({ }, 1, function () awful.layout.inc( 1) end),
+            awful.button({ }, 3, function () awful.layout.inc(-1) end),
+            awful.button({ }, 4, function () awful.layout.inc(-1) end),
+            awful.button({ }, 5, function () awful.layout.inc( 1) end),
+        }
+    }
 
-		awful.spawn.easy_async_with_shell("iwctl station wlan0 show | grep network", function(out)
-			if out == "" then
-				neticon.image = beautiful.disconnected
-				net.text = " Disconnected"
-			else
-				neticon.image = beautiful.connected
-				net.text = " " .. string.gsub(string.sub(out, 35), "[ \t]+%f[\r\n%z]", "")
-			end
-		end)
+    s.mytaglist = awful.widget.taglist {
+        screen  = s,
+        filter  = awful.widget.taglist.filter.all,
+        buttons = {
+            awful.button({ }, 1, function(t) t:view_only() end),
+            awful.button({ modkey }, 1, function(t)
+                                            if client.focus then
+                                                client.focus:move_to_tag(t)
+                                            end
+                                        end),
+            awful.button({ }, 3, awful.tag.viewtoggle),
+            awful.button({ modkey }, 3, function(t)
+                                            if client.focus then
+                                                client.focus:toggle_tag(t)
+                                            end
+                                        end),
+            awful.button({ }, 4, function(t) awful.tag.viewprev(t.screen) end),
+            awful.button({ }, 5, function(t) awful.tag.viewnext(t.screen) end),
+        }
+    } ]]
 
-		awful.spawn.easy_async_with_shell("acpi -b | awk '{print $3$4}'", function(out)
-			if string.find(out, "Charging") then
-				battery.update = not battery.update or false
-				if battery.update then
-					battery.widget.bar_active_color = "#69EF86"
-					battery.widget.handle_color = "#69EF86"
-				else
-					battery.widget.bar_active_color = "#69BE86"
-					battery.widget.handle_color = "#69BE86"
-				end
-			end
-			battery.widget.value = tonumber(string.sub(out, string.find(out, "[0-9]+")))
-		end)
+    --[[ s.mytasklist = awful.widget.tasklist {
+        screen  = s,
+        filter  = awful.widget.tasklist.filter.currenttags,
+        buttons = {
+            awful.button({ }, 1, function (c)
+                c:activate { context = "tasklist", action = "toggle_minimization" }
+            end),
+            awful.button({ }, 3, function() awful.menu.client_list { theme = { width = 250 } } end),
+            awful.button({ }, 4, function() awful.client.focus.byidx(-1) end),
+            awful.button({ }, 5, function() awful.client.focus.byidx( 1) end),
+        }
+    } ]]
 
-		awful.spawn.easy_async_with_shell("pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}'", function(out)
-			volume.widget.value = tonumber(string.sub(out, string.find(out, "[0-9]+")))
-		end)
-
-		awful.spawn.easy_async_with_shell("brightnessctl i | grep Current | awk '{print $4}'", function(bright)
-			brightness.widget.value = tonumber(string.sub(bright, string.find(bright, "[0-9]+")))
-		end)
-	end,
-})
-
-timer2 = gears.timer({
-	timeout = 30,
-	call_now = true,
-	autostart = true,
-	callback = function()
-		awful.spawn.easy_async_with_shell("df -BM | grep sda | awk '{print $2" .. '" "' .. "$3}'", function(b)
-			local words = {}
-
-			for word in b:gmatch("[0-9]+") do
-				table.insert(words, word)
-			end
-
-			fs.widget.max_value = tonumber(words[1])
-			fs.widget.value = tonumber(words[2])
-		end)
-	end,
-})
-
-timerOn = true
-
-awesome.connect_signal("timers", function()
-	if timerOn then
-		timer1:stop()
-		timer2:stop()
-	else
-		timer1:start()
-		timer2:start()
-	end
-	timerOn = not timerOn
+    -- Create the wibox
+    --[[ s.mywibox = awful.wibar {
+        position = "top",
+        screen   = s,
+        widget   = {
+            layout = wibox.layout.align.horizontal,
+            { -- Left widgets
+                layout = wibox.layout.fixed.horizontal,
+                mylauncher,
+                s.mytaglist,
+                s.mypromptbox,
+            },
+            s.mytasklist, -- Middle widget
+            { -- Right widgets
+                layout = wibox.layout.fixed.horizontal,
+                mykeyboardlayout,
+                wibox.widget.systray(),
+                mytextclock,
+                s.mylayoutbox,
+            },
+        }
+    } ]]
+    bar.setup()
+    layoutpopup.setup()
+    launcher.setup()
 end)

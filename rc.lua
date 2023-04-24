@@ -5,8 +5,8 @@ local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
-local ruled = require("ruled")
 local menubar = require("menubar")
+local ruled = require("ruled")
 
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme/theme.lua")
 
@@ -25,8 +25,8 @@ menubar.utils.terminal = terminal
 
 tag.connect_signal("request::default_layouts", function()
 	awful.layout.append_default_layouts({
-		awful.layout.suit.tile,
 		awful.layout.suit.floating,
+		awful.layout.suit.tile,
 		awful.layout.suit.tile.bottom,
 		awful.layout.suit.fair,
 		awful.layout.suit.fair.horizontal,
@@ -94,7 +94,7 @@ ruled.client.connect_signal("request::rules", function()
 
 	ruled.client.append_rule({
 		id = "titlebars",
-		rule_any = { class = { "figma-linux", "Alacritty" } },
+		rule_any = { class = { "figma-linux", "Alacritty", "Opera" } },
 		properties = { titlebars_enabled = false },
 	})
 end)
@@ -148,6 +148,7 @@ ruled.notification.connect_signal("request::rules", function()
 end)
 
 awful.spawn.with_shell("picom -b")
+awful.spawn.with_shell("xset -dpms; xset s noblank; xset s off; xsetroot -cursor_name left_ptr; xmodmap -e 'pointer = 3 2 1'")
 
 client.connect_signal("request::default_mousebindings", function()
 	awful.mouse.append_client_mousebindings({
@@ -202,3 +203,4 @@ end)
 
 require("keys")
 require("ui")
+
