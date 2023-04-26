@@ -1,11 +1,13 @@
-local awful = require("awful")
+local A = require("awful")
 
 local bar = require("ui.bar")
+-- local dock = require("ui.dock")
 local layoutpopup = require("ui.layoutpopup")
 local launcher = require("ui.launcher")
+local wifi = require("ui.bar.wifi")
 
 screen.connect_signal("request::desktop_decoration", function(s)
-    awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
+    A.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, A.layout.layouts[1])
 
     --[[ s.mypromptbox = awful.widget.prompt()
 
@@ -76,6 +78,8 @@ screen.connect_signal("request::desktop_decoration", function(s)
         }
     } ]]
     bar.setup()
+    -- dock.setup()
     layoutpopup.setup()
     launcher.setup()
+    wifi.setup()
 end)

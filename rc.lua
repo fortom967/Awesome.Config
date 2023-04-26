@@ -25,11 +25,11 @@ menubar.utils.terminal = terminal
 
 tag.connect_signal("request::default_layouts", function()
 	awful.layout.append_default_layouts({
-		awful.layout.suit.floating,
 		awful.layout.suit.tile,
 		awful.layout.suit.tile.bottom,
 		awful.layout.suit.fair,
 		awful.layout.suit.fair.horizontal,
+		awful.layout.suit.floating,
 	})
 end)
 
@@ -63,25 +63,11 @@ ruled.client.connect_signal("request::rules", function()
 			instance = { "copyq", "pinentry" },
 			class = {
 				"osu!",
-				"Arandr",
-				"Blueman-manager",
-				"Gpick",
-				"Kruler",
-				"Sxiv",
-				"Tor Browser",
-				"Wpa_gui",
-				"veromix",
-				"xtightvncviewer",
+				"mgba",
 			},
 
-			name = {
-				"Event Tester",
-			},
-			role = {
-				"AlarmWindow",
-				"ConfigManager",
-				"pop-up",
-			},
+			name = {},
+			role = {},
 		},
 		properties = { floating = true },
 	})
@@ -148,7 +134,9 @@ ruled.notification.connect_signal("request::rules", function()
 end)
 
 awful.spawn.with_shell("picom -b")
-awful.spawn.with_shell("xset -dpms; xset s noblank; xset s off; xsetroot -cursor_name left_ptr; xmodmap -e 'pointer = 3 2 1'")
+awful.spawn.with_shell(
+	"xset -dpms; xset s noblank; xset s off; xsetroot -cursor_name left_ptr; xmodmap -e 'pointer = 3 2 1'"
+)
 
 client.connect_signal("request::default_mousebindings", function()
 	awful.mouse.append_client_mousebindings({
@@ -203,4 +191,3 @@ end)
 
 require("keys")
 require("ui")
-

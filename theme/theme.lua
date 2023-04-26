@@ -5,6 +5,7 @@
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local rnotification = require("ruled.notification")
+local gears = require("gears")
 local dpi = xresources.apply_dpi
 
 -- local gfs = require("gears.filesystem")
@@ -14,10 +15,17 @@ local theme = {}
 
 theme.font = "Recursive Sans Casual Static Italic 11"
 
-theme.barbg = "#101213"
+theme.barbg = "#101010"
 theme.barfg = "#ABABAB"
 theme.barhi = "#2E2D2D"
-theme.accent = "#6E36C9"
+-- theme.accent = "#6E36C9"
+theme.accent = "#81cacb"
+
+theme.snapper_gap = 6
+theme.snap_bg = "#000"
+theme.snap_shape = gears.shape.rectangle
+theme.snap_border_width = 1
+
 
 theme.disconnected = themes_path .. "icons/connected.svg"
 theme.connected = themes_path .. "icons/connected.svg"

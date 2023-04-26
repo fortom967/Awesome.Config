@@ -35,9 +35,10 @@ promptpopup = A.popup({
 		forced_height = 40,
 		widget = W.container.margin,
 	}),
+    hide_on_right_click = true,
 	placement = A.placement.centered,
 	ontop = true,
-	bg = B.bar_bg,
+	bg = B.barbg,
 	visible = false,
 })
 

@@ -34,9 +34,11 @@ local layout_popup = A.popup({
 		margins = 4,
 		widget = W.container.margin,
 	}),
+    hide_on_right_click = true,
 	border_color = B.border_color,
 	border_width = B.border_width,
 	placement = A.placement.centered,
+    bg = B.barbg,
     ontop = true,
 	visible = false,
 })
