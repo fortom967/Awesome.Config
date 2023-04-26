@@ -13,7 +13,7 @@ local themes_path = os.getenv("HOME") .. "/.config/awesome/theme/"
 
 local theme = {}
 
-theme.font = "Recursive Sans Casual Static Italic 11"
+theme.font = "Recursive Sans Casual Static 11"
 
 theme.barbg = "#101010"
 theme.barfg = "#ABABAB"

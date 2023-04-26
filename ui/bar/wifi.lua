@@ -1,7 +1,8 @@
 local A = require("awful")
 local W = require("wibox")
 local B = require("beautiful")
-local S = require("gears").shape
+local G = require("gears")
+local S = G.shape
 local N = require("naughty")
 
 local function hover(self, _, _, _)
@@ -189,8 +190,6 @@ wifipopup = A.popup({
 	}),
 	x = 1280 - 410,
 	y = 50,
-	-- hide_on_right_click = true,
-	-- placement = A.placement.top_right,
 	ontop = true,
 	bg = B.barbg,
 	visible = false,
@@ -199,15 +198,22 @@ wifipopup = A.popup({
 local wifibutton = W.widget({
 	{
 		{
-			text = "",
-            valign = "center",
-            halign = "center",
-			forced_height = 25,
-			forced_width = 35,
-			widget = W.widget.textbox,
+			{
+				text = "",
+				valign = "center",
+				halign = "center",
+				widget = W.widget.textbox,
+			},
+			margins = {
+				left = 10,
+				right = 10,
+				top = 4,
+				bottom = 4,
+			},
+			widget = W.container.margin,
 		},
 		bg = B.barhi,
-        fg = B.accent,
+		fg = B.accent,
 		shape = function(cr, w, h)
 			S.rounded_rect(cr, w, h, 4)
 		end,
@@ -224,6 +230,23 @@ local wifibutton = W.widget({
 local M = { wifibutton = wifibutton }
 
 function M.setup()
+	G.timer({
+		timeout = 5,
+		call_now = true,
+		autostart = true,
+		callback = function()
+			A.spawn.easy_async_with_shell(
+				"iwctl station wlan0 show | grep 'Connected network' | cut -b 35- | awk '{$1=$1};1'",
+				function(out)
+					local net = out
+					if net ~= "" then
+						net = " " .. net
+					end
+					M.wifibutton.widget.widget.widget.text = "" .. net
+				end
+			)
+		end,
+	})
 	awesome.connect_signal("ui::wifipopup", function()
 		wifipopup.visible = not wifipopup.visible
 	end)

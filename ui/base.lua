@@ -5,14 +5,14 @@ local S = require("gears").shape
 
 local M = {}
 
-function M.bgWithMargin(widget, margin, bg)
+function M.bgWithMargin(table)
     return W.widget{
         {
-            widget,
-            margin = margin,
+            table.widget,
+            margin = table.margin,
             widget = W.container.margin
         },
-        bg = bg,
+        bg = table.bg,
         widget = W.container.background
     }
 end

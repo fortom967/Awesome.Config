@@ -1,5 +1,6 @@
 local A = require("awful")
 
+local calender = require("ui.bar.calender")
 local bar = require("ui.bar")
 -- local dock = require("ui.dock")
 local layoutpopup = require("ui.layoutpopup")
@@ -78,8 +79,8 @@ screen.connect_signal("request::desktop_decoration", function(s)
         }
     } ]]
     bar.setup()
-    -- dock.setup()
     layoutpopup.setup()
     launcher.setup()
     wifi.setup()
+    calender.setup()
 end)

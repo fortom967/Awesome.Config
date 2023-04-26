@@ -13,8 +13,8 @@ local function create_callback(self, tag, _, _)
 	self:connect_signal("mouse::leave", function()
 		if tag.selected and #tag:clients() > 0 then
 			self.widget.widget.bg = B.accent
-		elseif tag.selected then
-			self.widget.widget.bg = "#fff"
+		elseif tag.selected or #tag:clients() > 0 then
+			self.widget.widget.bg = B.accent
 		else
 			self.widget.widget.bg = "#fff"
 		end

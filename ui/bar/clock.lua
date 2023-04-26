@@ -7,9 +7,9 @@ local clock = W.widget({
 	{
 		{
 			{
-				format = "%I:%M:%S %p",
+				format = "  %I:%M:%S %p",
 				refresh = 1,
-                forced_height = 25,
+				forced_height = 25,
 				widget = W.widget.textclock,
 			},
 			margins = {
@@ -27,6 +27,11 @@ local clock = W.widget({
 		widget = W.container.background,
 	},
 	widget = W.container.place,
+	buttons = {
+		A.button({}, 1, nil, function()
+            awesome.emit_signal("ui::calender")
+		end),
+	},
 })
 
 return clock
