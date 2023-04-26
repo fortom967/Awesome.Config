@@ -3,7 +3,7 @@ local W = require("wibox")
 local B = require("beautiful")
 local S = require("gears").shape
 
-local wifi = require("ui.bar.wifi")
+local wifi = require("ui.popup.wifi")
 local taglist = require("ui.bar.taglist")
 local clock = require("ui.bar.clock")
 

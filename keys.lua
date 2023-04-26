@@ -3,7 +3,7 @@ require("awful.autofocus")
 local menubar = require("menubar")
 require("awful.hotkeys_popup.keys")
 local hotkeys_popup = require("awful.hotkeys_popup")
-local launcher = require("ui.launcher")
+
 terminal = "alacritty"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor

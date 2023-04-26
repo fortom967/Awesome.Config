@@ -7,7 +7,7 @@ local prompt = W.widget.textbox()
 
 local function getCommand()
 	A.prompt.run({
-		prompt = "# ",
+		prompt = "#! ",
 		text = "",
 		bg_cursor = B.accent,
 		textbox = prompt,
