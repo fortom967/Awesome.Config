@@ -1,3 +1,0 @@
-local funs = {}
-
-return funs

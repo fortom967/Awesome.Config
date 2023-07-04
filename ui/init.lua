@@ -3,7 +3,8 @@ local awful = require("awful")
 local Clock = require("ui.popup.clock")
 local Launcher = require("ui.popup.launcher")
 local Taglist = require("ui.popup.taglist")
-local Notification = require"ui.popup.notification"
+local Wifi = require("ui.popup.wifi")
+local Notification = require("ui.popup.notification")
 
 root.buttons = {
 	awful.button({}, 1, function()
@@ -24,4 +25,5 @@ screen.connect_signal("request::desktop_decoration", function(s)
 	Clock(s)
 	Launcher(s)
 	Taglist(s)
+    Wifi(s)
 end)

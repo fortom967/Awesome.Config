@@ -87,9 +87,12 @@ local Clock = function(s)
 					},
 				},
 				{
-					format = "%I:%M:%S %p",
-					refresh = 1,
-					widget = wibox.widget.textclock,
+					{
+						format = "%I:%M:%S %p",
+						refresh = 1,
+						widget = wibox.widget.textclock,
+					},
+					widget = wibox.container.place,
 				},
 
 				spacing = 10,
