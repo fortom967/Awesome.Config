@@ -86,41 +86,41 @@ ruled.client.connect_signal("request::rules", function()
 end)
 
 client.connect_signal("request::titlebars", function(c)
-	local buttons = {
-		awful.button({}, 1, function()
-			c:activate({ context = "titlebar", action = "mouse_move" })
-		end),
-		awful.button({}, 3, function()
-			c:activate({ context = "titlebar", action = "mouse_resize" })
-		end),
-	}
-
-	awful.titlebar(c, {
-		size = 30,
-		position = "top",
-	}).widget = {
-		{
-			awful.titlebar.widget.iconwidget(c),
-			buttons = buttons,
-			layout = wibox.layout.fixed.horizontal,
-		},
-		{
-			{
-				halign = "center",
-				widget = awful.titlebar.widget.titlewidget(c),
-			},
-			buttons = buttons,
-			layout = wibox.layout.flex.horizontal,
-		},
-		{
-			awful.titlebar.widget.floatingbutton(c),
-			awful.titlebar.widget.maximizedbutton(c),
-			awful.titlebar.widget.closebutton(c),
-			layout = wibox.layout.fixed.horizontal(),
-		},
-		layout = wibox.layout.align.horizontal,
-		expand = "none",
-	}
+	-- local buttons = {
+	-- 	awful.button({}, 1, function()
+	-- 		c:activate({ context = "titlebar", action = "mouse_move" })
+	-- 	end),
+	-- 	awful.button({}, 3, function()
+	-- 		c:activate({ context = "titlebar", action = "mouse_resize" })
+	-- 	end),
+	-- }
+	--
+	-- awful.titlebar(c, {
+	-- 	size = 30,
+	-- 	position = "top",
+	-- }).widget = {
+	-- 	{
+	-- 		awful.titlebar.widget.iconwidget(c),
+	-- 		buttons = buttons,
+	-- 		layout = wibox.layout.fixed.horizontal,
+	-- 	},
+	-- 	{
+	-- 		{
+	-- 			halign = "center",
+	-- 			widget = awful.titlebar.widget.titlewidget(c),
+	-- 		},
+	-- 		buttons = buttons,
+	-- 		layout = wibox.layout.flex.horizontal,
+	-- 	},
+	-- 	{
+	-- 		awful.titlebar.widget.floatingbutton(c),
+	-- 		awful.titlebar.widget.maximizedbutton(c),
+	-- 		awful.titlebar.widget.closebutton(c),
+	-- 		layout = wibox.layout.fixed.horizontal(),
+	-- 	},
+	-- 	layout = wibox.layout.align.horizontal,
+	-- 	expand = "none",
+	-- }
 end)
 
 ruled.notification.connect_signal("request::rules", function()
@@ -189,5 +189,5 @@ client.connect_signal("request::default_keybindings", function()
 	})
 end)
 
-require("keys")
+require("misc.keys")
 require("ui")

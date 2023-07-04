@@ -10,8 +10,6 @@ editor_cmd = terminal .. " -e " .. editor
 
 modkey = "Mod4"
 
--- Then **IN THE globalkeys TABLE** add a new shortcut
-
 awful.keyboard.append_global_keybindings({
 	awful.key({ modkey, "Shift" }, "r", awesome.restart),
 	awful.key({ modkey, "Shift" }, "q", awesome.quit),
