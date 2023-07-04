@@ -1,14 +1,9 @@
 local awful = require("awful")
 require("awful.autofocus")
-local menubar = require("menubar")
 require("awful.hotkeys_popup.keys")
-local hotkeys_popup = require("awful.hotkeys_popup")
 
-terminal = "alacritty"
-editor = os.getenv("EDITOR") or "nano"
-editor_cmd = terminal .. " -e " .. editor
-
-modkey = "Mod4"
+local terminal = "alacritty"
+local modkey = "Mod4"
 
 awful.keyboard.append_global_keybindings({
 	awful.key({ modkey, "Shift" }, "r", awesome.restart),
@@ -16,6 +11,10 @@ awful.keyboard.append_global_keybindings({
 
 	awful.key({ modkey }, "Return", function()
 		awful.spawn(terminal)
+	end),
+
+	awful.key({ modkey }, "r", function()
+		awesome.emit_signal("UI::Launcher")
 	end),
 
 	awful.key({ modkey }, "Left", awful.tag.viewprev),

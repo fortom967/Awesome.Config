@@ -2,6 +2,9 @@
     "diagnostics.globals": [
         "vim",
         "client",
-        "screen"
+        "screen",
+        "awesome",
+        "tag",
+        "root"
     ]
 }

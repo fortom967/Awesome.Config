@@ -3,7 +3,7 @@ local gears = require("gears")
 local conf_path = os.getenv("HOME") .. "/.config/awesome/theme/"
 
 local theme = {
-	font = "Recursive Sans Casual Static 11",
+	font = "Recursive Sans Casual Static 10",
 
 	popup = { bg = "#000000cf" },
 	barhi = "#2E2D2D",
@@ -28,7 +28,7 @@ local theme = {
 	brightness = conf_path .. "icons/brightness.svg",
 	battery = conf_path .. "icons/battery.svg",
 
-	useless_gap = 6,
+	useless_gap = 5,
 	border_width = 0,
 
 	wallpaper = conf_path .. "wallpaper.jpg",

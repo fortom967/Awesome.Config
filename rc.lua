@@ -2,16 +2,12 @@ pcall(require, "luarocks.loader")
 
 local gears = require("gears")
 local awful = require("awful")
-local wibox = require("wibox")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
 local menubar = require("menubar")
 local ruled = require("ruled")
 
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/theme/theme.lua")
-
-require("awful.autofocus")
-require("awful.hotkeys_popup.keys")
 
 naughty.connect_signal("request::display_error", function(message, startup)
 	naughty.notification({
@@ -21,7 +17,9 @@ naughty.connect_signal("request::display_error", function(message, startup)
 	})
 end)
 
-menubar.utils.terminal = terminal
+menubar.utils.terminal = "alacritty"
+
+local modkey = "Mod4"
 
 tag.connect_signal("request::default_layouts", function()
 	awful.layout.append_default_layouts({
@@ -33,17 +31,9 @@ tag.connect_signal("request::default_layouts", function()
 	})
 end)
 
-screen.connect_signal("request::wallpaper", function(s)
+screen.connect_signal("request::wallpaper", function(_)
 	gears.wallpaper.maximized(beautiful.wallpaper)
 end)
-
--- awful.mouse.append_global_mousebindings({
--- 	awful.button({}, 3, function()
--- 		mymainmenu:toggle()
--- 	end),
--- 	awful.button({}, 4, awful.tag.viewprev),
--- 	awful.button({}, 5, awful.tag.viewnext),
--- })
 
 ruled.client.connect_signal("request::rules", function()
 	ruled.client.append_rule({
@@ -83,44 +73,6 @@ ruled.client.connect_signal("request::rules", function()
 		rule_any = { class = { "figma-linux", "Alacritty", "Opera" } },
 		properties = { titlebars_enabled = false },
 	})
-end)
-
-client.connect_signal("request::titlebars", function(c)
-	-- local buttons = {
-	-- 	awful.button({}, 1, function()
-	-- 		c:activate({ context = "titlebar", action = "mouse_move" })
-	-- 	end),
-	-- 	awful.button({}, 3, function()
-	-- 		c:activate({ context = "titlebar", action = "mouse_resize" })
-	-- 	end),
-	-- }
-	--
-	-- awful.titlebar(c, {
-	-- 	size = 30,
-	-- 	position = "top",
-	-- }).widget = {
-	-- 	{
-	-- 		awful.titlebar.widget.iconwidget(c),
-	-- 		buttons = buttons,
-	-- 		layout = wibox.layout.fixed.horizontal,
-	-- 	},
-	-- 	{
-	-- 		{
-	-- 			halign = "center",
-	-- 			widget = awful.titlebar.widget.titlewidget(c),
-	-- 		},
-	-- 		buttons = buttons,
-	-- 		layout = wibox.layout.flex.horizontal,
-	-- 	},
-	-- 	{
-	-- 		awful.titlebar.widget.floatingbutton(c),
-	-- 		awful.titlebar.widget.maximizedbutton(c),
-	-- 		awful.titlebar.widget.closebutton(c),
-	-- 		layout = wibox.layout.fixed.horizontal(),
-	-- 	},
-	-- 	layout = wibox.layout.align.horizontal,
-	-- 	expand = "none",
-	-- }
 end)
 
 ruled.notification.connect_signal("request::rules", function()
