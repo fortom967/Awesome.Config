@@ -3,15 +3,10 @@ local wibox = require("wibox")
 local gears = require("gears")
 local naughty = require("naughty")
 local theme = require("beautiful")
+local utils = require"libs"
+local inspect = require"inspect".inspect
 
 local Wifi = function(_)
-	-- local sel = 1
-	-- local colors = {
-	-- 	theme.accent,
-	-- 	"#80aaff",
-	-- 	"#0affae",
-	-- 	"#fa6e70",
-	-- }
 
 	local popup = awful.popup({
 		x = 280,
@@ -56,14 +51,22 @@ local Wifi = function(_)
 		}),
 	})
 
+	-- local sel = 1
+	-- local colors = {
+	-- 	theme.accent,
+	-- 	"#80aaff",
+	-- 	"#0affae",
+	-- 	"#fa6e70",
+	-- }
 	-- gears.timer({
-	-- 	timeout = 0.5,
+	-- 	timeout = 1,
 	-- 	call_now = true,
 	-- 	autostart = true,
 	-- 	callback = function()
-	-- 		local sigstrength = popup.widget:get_children_by_id("sigstrength")[1]
-	-- 		sigstrength.bg = colors[sel % 4 + 1]
-	-- 		sel = sel + 1
+	-- 		-- local sigstrength = popup.widget:get_children_by_id("sigstrength")[1]
+	-- 		-- sigstrength.bg = colors[sel % 4 + 1]
+	-- 		-- sel = sel + 1
+ --            naughty.notification{message = inspect(utils.get_speed("wlan0"))}
 	-- 	end,
 	-- })
 

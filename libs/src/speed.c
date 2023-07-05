@@ -7,23 +7,23 @@ c_get_speed (lua_State *l)
         
     struct rtnl_link *link;
     struct nl_sock *socket;
-    uint64_t kbytes_in, kbytes_out, packets_in, packets_out;
+    int upload, download;
 
     socket = nl_socket_alloc ();
     nl_connect (socket, NETLINK_ROUTE);
 
     if (rtnl_link_get_kernel (socket, 0, ifa, &link) >= 0)
         {
-            kbytes_in = rtnl_link_get_stat (link, RTNL_LINK_RX_BYTES);
-            kbytes_out = rtnl_link_get_stat (link, RTNL_LINK_TX_BYTES);
+            download = rtnl_link_get_stat (link, RTNL_LINK_RX_BYTES);
+            upload = rtnl_link_get_stat (link, RTNL_LINK_TX_BYTES);
             rtnl_link_put (link);
         }
 
     lua_newtable(l);
-    lua_pushinteger(l, kbytes_in);
+    lua_pushinteger(l, download);
     lua_setfield(l, -2, "download");
 
-    lua_pushinteger(l, kbytes_out);
+    lua_pushinteger(l, upload);
     lua_setfield(l, -2, "upload");
 
     nl_socket_free (socket);

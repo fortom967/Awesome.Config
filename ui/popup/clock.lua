@@ -20,7 +20,7 @@ local Calender = function(s)
 	end
 
 	local cal = awful.popup({
-		x = 1280 - 320 - 10,
+		x = s.geometry.width - 320 - 10,
 		y = 50,
 		screen = s,
 		ontop = true,
@@ -57,7 +57,7 @@ local Clock = function(s)
 	Calender(s)
 
 	return awful.popup({
-		x = 1280 - 145,
+		x = s.geometry.width - 135 - 10,
 		y = 5,
 		screen = s,
 

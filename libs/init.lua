@@ -4,12 +4,14 @@ local mod = {}
 
 local cache = { upload = 0, download = 0 }
 
-local function show(n)
-	local function truncate(num)
-		local mult = 100
-		return math.floor(num * mult + 0.5) / mult
-	end
+function mod.truncate(num)
+	local mult = 100
+	return math.floor(num * mult + 0.5) / mult
+end
 
+local truncate = mod.truncate
+
+function mod.show(n)
 	local in_Kb = truncate(n / 1024)
 	if n < 1024 then
 		return tostring(in_Kb) .. " Kb"
@@ -30,9 +32,12 @@ function mod.get_speed(iface)
 	local stat = lib.c_get_speed(iface)
 
 	local ns = {
-		upload = show(stat.upload - cache.upload),
-		download = show(stat.download - cache.download),
+		upload = mod.show(stat.upload - cache.upload),
+		download = mod.show(stat.download - cache.download),
 	}
+
+	print(ns.upload)
+	print(ns.download)
 
 	cache = stat
 

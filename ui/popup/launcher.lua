@@ -28,7 +28,7 @@ local Launcher = function(s)
 	end
 
 	launcher = awful.popup({
-		x = 1280 - (1280 / 2) - 150,
+		x = s.geometry.width - (s.geometry.width + 300) / 2,
 		y = 50,
         screen = s,
 

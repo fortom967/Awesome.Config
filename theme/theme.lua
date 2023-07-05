@@ -38,6 +38,8 @@ local theme = {
 	layout_floating = conf_path .. "layouts/floating.svg",
 	layout_tilebottom = conf_path .. "layouts/tilebottom.svg",
 	layout_tile = conf_path .. "layouts/tile.svg",
+    layoutlist_bg_selected = "#6E36C9",
+
 }
 
 return theme
