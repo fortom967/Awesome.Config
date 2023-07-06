@@ -17,6 +17,10 @@ awful.keyboard.append_global_keybindings({
 		awesome.emit_signal("UI::Launcher")
 	end),
 
+	awful.key({ modkey, "Shift" }, "l", function()
+		awesome.emit_signal("UI::Lockscreen")
+	end),
+
 	awful.key({ modkey }, "Left", awful.tag.viewprev),
 	awful.key({ modkey }, "Right", awful.tag.viewnext),
 	awful.key({ modkey }, "Escape", awful.tag.history.restore),
@@ -69,13 +73,6 @@ awful.keyboard.append_global_keybindings({
 	awful.key({ modkey, "Control" }, "l", function()
 		awful.tag.incncol(-1, nil, true)
 	end),
-	--[[ awful.key({ modkey }, "space", function()
-        awesome.emit_signal("layoutpopup")
-		awful.layout.inc(1)
-	end),
-	awful.key({ modkey, "Shift" }, "space", function()
-		awful.layout.inc(-1)
-	end), ]]
 })
 
 awful.keyboard.append_global_keybindings({

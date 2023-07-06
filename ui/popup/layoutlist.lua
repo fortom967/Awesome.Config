@@ -1,6 +1,7 @@
 local awful = require("awful")
-local wibox = require("wibox")
 local gears = require("gears")
+local theme = require("beautiful")
+local wibox = require("wibox")
 
 local LayoutList = function(s)
 	local list = awful.widget.layoutlist({
@@ -39,6 +40,8 @@ local LayoutList = function(s)
 
 		ontop = true,
 		visible = false,
+		type = "dock",
+		bg = theme.popup.bg,
 
 		widget = {
 			list,

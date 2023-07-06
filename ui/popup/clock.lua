@@ -23,6 +23,8 @@ local Calender = function(s)
 		x = s.geometry.width - 320 - 10,
 		y = 50,
 		screen = s,
+
+        type = "dock",
 		ontop = true,
 		visible = false,
 
@@ -61,6 +63,7 @@ local Clock = function(s)
 		y = 5,
 		screen = s,
 
+        type = "dock",
 		bg = theme.popup.bg,
 
 		widget = {

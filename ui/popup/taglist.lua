@@ -5,7 +5,7 @@ local theme = require("beautiful")
 
 local Taglist = function(s)
 	local update_callback = function(self, tag, _, _)
-		self.widget.bg = #tag:clients() > 0 and theme.accent or "#e0e0e0"
+		self.widget.bg = #tag:clients() > 0 and theme.accent or "#a0a0a0"
 		self.widget.forced_width = tag.selected and 30 or 7
 	end
 
@@ -57,6 +57,7 @@ local Taglist = function(s)
 		y = 5,
 		screen = s,
 
+        type = "dock",
 		bg = theme.popup.bg,
 
 		widget = {

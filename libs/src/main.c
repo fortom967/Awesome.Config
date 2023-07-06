@@ -12,3 +12,9 @@ luaopen_libs_lib (lua_State *l)
 
     return 1;
 }
+
+int luaopen_lib(lua_State *l)
+{
+    return luaopen_libs_lib(l);
+}
+

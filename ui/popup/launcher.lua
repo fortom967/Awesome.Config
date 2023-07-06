@@ -30,8 +30,9 @@ local Launcher = function(s)
 	launcher = awful.popup({
 		x = s.geometry.width - (s.geometry.width + 300) / 2,
 		y = 50,
-        screen = s,
+		screen = s,
 
+        type = "dock",
 		bg = theme.popup.bg,
 
 		ontop = true,

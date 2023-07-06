@@ -5,9 +5,12 @@ local conf_path = os.getenv("HOME") .. "/.config/awesome/theme/"
 local theme = {
 	font = "Recursive Sans Casual Static 10",
 
-	popup = { bg = "#000000cf" },
+	popup = { bg = "#000000bf" },
 	barhi = "#2E2D2D",
 	accent = "#6E36C9",
+
+	prompt_bg_cursor = "#6E36C9",
+    prompt_font = "Maple Mono NF Italic 10",
 
 	snapper_gap = 6,
 	snap_bg = "#000",
@@ -32,6 +35,7 @@ local theme = {
 	border_width = 0,
 
 	wallpaper = conf_path .. "wallpaper.jpg",
+    lockscreen = conf_path .. "lock.jpg",
 
 	layout_fairh = conf_path .. "layouts/fairh.svg",
 	layout_fairv = conf_path .. "layouts/fairv.svg",

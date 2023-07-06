@@ -31,10 +31,6 @@ tag.connect_signal("request::default_layouts", function()
 	})
 end)
 
-screen.connect_signal("request::wallpaper", function(_)
-	gears.wallpaper.maximized(beautiful.wallpaper)
-end)
-
 ruled.client.connect_signal("request::rules", function()
 	ruled.client.append_rule({
 		id = "global",
@@ -85,10 +81,6 @@ ruled.notification.connect_signal("request::rules", function()
 	})
 end)
 
-awful.spawn.with_shell("picom -b")
-awful.spawn.with_shell(
-	"xset -dpms; xset s noblank; xset s off; xsetroot -cursor_name left_ptr; xmodmap -e 'pointer = 3 2 1'"
-)
 
 client.connect_signal("request::default_mousebindings", function()
 	awful.mouse.append_client_mousebindings({
@@ -141,5 +133,5 @@ client.connect_signal("request::default_keybindings", function()
 	})
 end)
 
-require("misc.keys")
+require("misc")
 require("ui")

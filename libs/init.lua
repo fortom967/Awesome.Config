@@ -13,7 +13,7 @@ local truncate = mod.truncate
 
 function mod.show(n)
 	local in_Kb = truncate(n / 1024)
-	if n < 1024 then
+	if in_Kb < 1024 then
 		return tostring(in_Kb) .. " Kb"
 	end
 
@@ -43,5 +43,7 @@ function mod.get_speed(iface)
 
 	return ns
 end
+
+-- mod.get_speed = lib.c_get_speed
 
 return mod
