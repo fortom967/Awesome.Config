@@ -36,6 +36,7 @@ local theme = {
 
 	wallpaper = conf_path .. "wallpaper.jpg",
     lockscreen = conf_path .. "lock.jpg",
+    avatar = conf_path .. "avatar.jpg",
 
 	layout_fairh = conf_path .. "layouts/fairh.svg",
 	layout_fairv = conf_path .. "layouts/fairv.svg",
