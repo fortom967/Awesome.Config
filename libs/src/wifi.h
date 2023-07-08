@@ -11,8 +11,8 @@
 #define IWD_NETWORK "net.connman.iwd.Network"
 #define IWD_STATION "net.connman.iwd.Station"
 
-int connect (lua_State *l);
+int connect_to_network (lua_State *l);
 
-int get_networks (lua_State *l);
+int scan_for_networks (lua_State *l);
 
-int disconnect (lua_State *l);
+int disconnect_from_network (lua_State *l);

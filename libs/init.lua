@@ -44,6 +44,9 @@ function mod.get_speed(iface)
 	return ns
 end
 
+mod.get_username = lib.get_username
+mod.authenticate = lib.authenticate
+
 -- mod.get_speed = lib.c_get_speed
 
 return mod

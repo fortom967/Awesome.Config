@@ -1,7 +1,8 @@
 local awful = require("awful")
 local wibox = require("wibox")
-local gears = require("gears")
 local theme = require("beautiful")
+
+theme.init(os.getenv("HOME") .. "/.config/awesome/theme/theme.lua")
 
 local Clock = require("ui.popup.clock")
 local Launcher = require("ui.popup.launcher")
@@ -9,7 +10,7 @@ local Taglist = require("ui.popup.taglist")
 local Wifi = require("ui.popup.wifi")
 local LayoutList = require("ui.popup.layoutlist")
 local Lockscreen = require("ui.popup.lockscreen")
-local Notification = require("ui.popup.notification")
+require("ui.popup.notification")
 
 root.buttons = {
 	awful.button({}, 1, function()
@@ -17,10 +18,20 @@ root.buttons = {
 	end),
 }
 
+tag.connect_signal("request::default_layouts", function()
+	awful.layout.append_default_layouts({
+		awful.layout.suit.tile,
+		awful.layout.suit.tile.bottom,
+		awful.layout.suit.fair,
+		awful.layout.suit.fair.horizontal,
+		awful.layout.suit.floating,
+	})
+end)
+
 screen.connect_signal("request::wallpaper", function(s)
 	awful.wallpaper({
 		screen = s,
-		bg = "#000000",
+		bg = "#00000000",
 		widget = {
 			image = theme.wallpaper,
 			resize = true,
