@@ -58,7 +58,7 @@ local Taglist = function(s)
 		screen = s,
 
         type = "dock",
-		bg = theme.popup.bg,
+		bg = theme.popup_bg,
 
 		widget = {
 			taglist,

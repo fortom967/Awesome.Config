@@ -10,6 +10,7 @@ local Taglist = require("ui.popup.taglist")
 local Wifi = require("ui.popup.wifi")
 local LayoutList = require("ui.popup.layoutlist")
 local Lockscreen = require("ui.popup.lockscreen")
+local NetPanel = require("ui.popup.netpanel")
 require("ui.popup.notification")
 
 root.buttons = {

@@ -53,7 +53,7 @@ ruled.notification.connect_signal("request::rules", function()
 	})
 end)
 
-ruled.client.connect_signal("request::default_mousebindings", function()
+client.connect_signal("request::default_mousebindings", function()
 	awful.mouse.append_client_mousebindings({
 		awful.button({}, 1, function(c)
 			c:activate({ context = "mouse_click" })
@@ -67,7 +67,7 @@ ruled.client.connect_signal("request::default_mousebindings", function()
 	})
 end)
 
-ruled.client.connect_signal("request::default_keybindings", function()
+client.connect_signal("request::default_keybindings", function()
 	awful.keyboard.append_client_keybindings({
 		awful.key({ modkey }, "f", function(c)
 			c.fullscreen = not c.fullscreen

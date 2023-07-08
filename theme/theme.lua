@@ -5,12 +5,14 @@ local conf_path = os.getenv("HOME") .. "/.config/awesome/theme/"
 local theme = {
 	font = "Recursive Sans Casual Static 10",
 
-	popup = { bg = "#000000bf" },
+	popup_bg = "#000000bf",
 	barhi = "#2E2D2D",
 	accent = "#6E36C9",
 
 	prompt_bg_cursor = "#6E36C9",
-    prompt_font = "Maple Mono NF Italic 10",
+	prompt_font = "Maple Mono NF Italic 10",
+
+	notification_bg = "#000000bf",
 
 	snapper_gap = 6,
 	snap_bg = "#000",
@@ -30,21 +32,24 @@ local theme = {
 	volume = conf_path .. "icons/volume.svg",
 	brightness = conf_path .. "icons/brightness.svg",
 	battery = conf_path .. "icons/battery.svg",
+	scan = conf_path .. "icons/scan.svg",
+	connect = conf_path .. "icons/connect.svg",
+	disconnect = conf_path .. "icons/disconnect.svg",
+	close = conf_path .. "icons/close.svg",
 
 	useless_gap = 5,
 	border_width = 0,
 
 	wallpaper = conf_path .. "wallpaper.jpg",
-    lockscreen = conf_path .. "lock.jpg",
-    avatar = conf_path .. "avatar.jpg",
+	lockscreen = conf_path .. "lock.jpg",
+	avatar = conf_path .. "avatar.jpg",
 
 	layout_fairh = conf_path .. "layouts/fairh.svg",
 	layout_fairv = conf_path .. "layouts/fairv.svg",
 	layout_floating = conf_path .. "layouts/floating.svg",
 	layout_tilebottom = conf_path .. "layouts/tilebottom.svg",
 	layout_tile = conf_path .. "layouts/tile.svg",
-    layoutlist_bg_selected = "#6E36C9",
-
+	layoutlist_bg_selected = "#6E36C9",
 }
 
 return theme

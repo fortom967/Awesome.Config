@@ -1,17 +1,14 @@
 local awful = require("awful")
 local wibox = require("wibox")
-local gears = require("gears")
-local naughty = require("naughty")
 local theme = require("beautiful")
-local utils = require("libs")
 
-local Wifi = function(s)
+local Wifi = function(_)
 	local popup = awful.popup({
 		x = 280,
 		y = 5,
 
-        type = "dock",
-		bg = theme.popup.bg,
+		type = "dock",
+		bg = theme.popup_bg,
 
 		widget = wibox.widget({
 			{
@@ -30,6 +27,11 @@ local Wifi = function(s)
 					bg = theme.accent,
 					id = "sigstrength",
 					widget = wibox.container.background,
+					buttons = {
+						awful.button({}, 1, function()
+                            awesome.emit_signal("UI::NetPanel")
+						end),
+					},
 				},
 
 				{

@@ -41,7 +41,7 @@ local LayoutList = function(s)
 		ontop = true,
 		visible = false,
 		type = "dock",
-		bg = theme.popup.bg,
+		bg = theme.popup_bg,
 
 		widget = {
 			list,

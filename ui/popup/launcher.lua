@@ -33,7 +33,7 @@ local Launcher = function(s)
 		screen = s,
 
         type = "dock",
-		bg = theme.popup.bg,
+		bg = theme.popup_bg,
 
 		ontop = true,
 		visible = false,

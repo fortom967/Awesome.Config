@@ -3,6 +3,7 @@ local wibox = require("wibox")
 local theme = require("beautiful")
 local gears = require("gears")
 local user = require("libs")
+-- local naughty = require("naughty")
 
 local popup
 
@@ -57,39 +58,52 @@ clock = gears.timer({
 	end,
 })
 
-local passwd
-local stop_prompt = false
+local pmt
+clock:connect_signal("stopped", function()
+	pmt()
+end)
+
+local passwd = wibox.widget({
+	text = "",
+	widget = wibox.widget.textbox,
+})
+
+local auth = false
 local attempt = 1
 
-passwd = awful.widget.prompt({
-	prompt = "",
+pmt = function()
+	return awful.prompt.run({
+		prompt = "",
+		textbox = passwd,
 
-	done_callback = function()
-		if not stop_prompt then
-			passwd:run()
-		end
-	end,
+		done_callback = function()
+			if not auth then
+				pmt()
+			end
+		end,
 
-	exe_callback = function(pwd)
-		if attempt >= 3 then
-			status.visible = true
-			status.widget.widget.text = "You provided wrong password for three times. Try again later."
-			clock:start()
-			return
-		end
+		exe_callback = function(pwd)
+			if attempt > 2 then
+				timer.visible = true
+				status.visible = true
+				status.widget.widget.text = "You provided wrong password for three times. Try again later."
+				clock:start()
+				return
+			end
 
-		if user.authenticate(pwd) then
-			stop_prompt = true
-			popup.visible = false
-		else
-			stop_prompt = false
-			status.visible = true
-			status.widget.widget.text = "Wrong password. Try again."
-			attempt = attempt + 1
-			passwd:run()
-		end
-	end,
-})
+			auth = user.authenticate(pwd)
+
+			if auth then
+				popup.visible = false
+			else
+				status.visible = true
+				status.widget.widget.text = "Wrong password. Try again."
+				attempt = attempt + 1
+				pmt()
+			end
+		end,
+	})
+end
 
 local buttons = wibox.widget({
 	{
@@ -234,7 +248,7 @@ local Lockscreen = function(s)
 					},
 					forced_width = 500,
 					forced_height = 400,
-					bg = theme.popup.bg,
+					bg = theme.popup_bg,
 					widget = wibox.container.background,
 				},
 				widget = wibox.container.place,
@@ -245,7 +259,7 @@ local Lockscreen = function(s)
 	})
 
 	awesome.connect_signal("UI::Lockscreen", function()
-		_ = not popup.visible and passwd:run() or nil
+		_ = not popup.visible and pmt() or nil
 		popup.visible = not popup.visible
 	end)
 
