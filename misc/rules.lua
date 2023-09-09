@@ -11,6 +11,7 @@ ruled.client.connect_signal("request::rules", function()
 			focus = awful.client.focus.filter,
 			raise = true,
 			screen = awful.screen.preferred,
+			titlebars_enabled = false,
 			placement = awful.placement.no_overlap + awful.placement.no_offscreen,
 		},
 	})
@@ -33,13 +34,14 @@ ruled.client.connect_signal("request::rules", function()
 	ruled.client.append_rule({
 		id = "titlebars",
 		rule_any = { type = { "normal", "dialog" } },
-		properties = { titlebars_enabled = true },
+		properties = { titlebars_enabled = false },
 	})
 
 	ruled.client.append_rule({
-		id = "titlebars",
-		rule_any = { class = { "figma-linux", "Alacritty", "Opera" } },
-		properties = { titlebars_enabled = false },
+		id = "maximized",
+        tag = 3,
+		rule_any = { class = { "figma-linux", "Google-chrome" } },
+		properties = { maximized_vertical = true, maximized_horizontal = true },
 	})
 end)
 

@@ -7,7 +7,7 @@ local theme = {
 
 	popup_bg = "#000000bf",
 	barhi = "#2E2D2D",
-	accent = "#6E36C9",
+	accent = "#78C6FF",
 
 	prompt_bg_cursor = "#6E36C9",
 	prompt_font = "Maple Mono NF Italic 10",

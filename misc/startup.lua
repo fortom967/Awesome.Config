@@ -4,7 +4,8 @@ local cmds = {
 	"picom -b",
 	"xsetroot -cursor_name left_ptr",
 	"xmodmap -e 'pointer = 3 2 1'",
-	[[ xss-lock awesome-client "awesome.emit_signal('UI::Lockscreen')" ]],
+    "xinput disable 'AlpsPS/2 ALPS DualPoint Stick'"
+	-- [[ xss-lock awesome-client "awesome.emit_signal('UI::Lockscreen')" ]],
 }
 
 for _, v in pairs(cmds) do

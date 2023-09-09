@@ -11,7 +11,7 @@ local panel = awful.popup({
 	type = "dock",
 	bg = theme.popup_bg,
 	ontop = true,
-	visible = true,
+	visible = false,
 
 	widget = {
 		{
